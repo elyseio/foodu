@@ -3,22 +3,6 @@ from bs4 import BeautifulSoup
 import json
 
 
-def write_to_file(data: list, file_name: str):
-    '''
-    Write the data into a json file
-
-    Args:
-        data - list of dictionary
-        file_name - string of the file name
-
-    Returns:
-        None
-    '''
-    print(f'Writing into {file_name}')
-    with open(file_name, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=4)
-
-
 def make_request(url: str):
     '''
     Make the request to the url to parse the data
@@ -70,6 +54,22 @@ def make_request(url: str):
     return recipe_data
 
 
+def write_to_file(data: list, file_name: str):
+    '''
+    Write the data into a json file
+
+    Args:
+        data - list of dictionary
+        file_name - string of the file name
+
+    Returns:
+        None
+    '''
+    print(f'Writing into {file_name}')
+    with open(file_name, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=4)
+
+
 def main():
     '''
     Contains the url for scraping data, after scraping writes it to a json file
@@ -94,6 +94,13 @@ def main():
 
     # Fish Recipes
     fish_recipes = make_request(fish_url)
+
+    # Write to file
+    write_to_file(chicken_recipes, 'chicken_recipes.json')
+    write_to_file(pork_recipes, 'pork_recipes.json')
+    write_to_file(beef_recipes, 'beef_recipes.json')
+    write_to_file(vegy_recipes, 'vegy_recipes.json')
+    write_to_file(fish_recipes, 'fish_recipes.json')
 
 
 if __name__ == '__main__':

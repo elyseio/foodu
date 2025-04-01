@@ -71,11 +71,29 @@ def make_request(url: str):
 
 
 def main():
+    '''
+    Contains the url for scraping data, after scraping writes it to a json file
+    '''
     chicken_url = 'https://panlasangpinoy.com/categories/recipes/chicken-recipes/page/'
     pork_url = 'https://panlasangpinoy.com/categories/recipes/pork-recipes/page/'
     beef_url = 'https://panlasangpinoy.com/categories/recipes/beef-recipes/page/'
     vegy_url = 'https://panlasangpinoy.com/categories/recipes/vegetable-recipes/page/'
     fish_url = 'https://panlasangpinoy.com/categories/recipes/fish-recipes-recipes/page/'
+
+    # Chicken Recipes
+    chick_recipes = make_request(chicken_url)
+
+    # Pork Recipes
+    pork_recipes = make_request(pork_url)
+
+    # Beef Recipes
+    beef_recipes = make_request(beef_url)
+
+    # Vegetable Recipes
+    vegy_recipes = make_request(vegy_url)
+
+    # Fish Recipes
+    fish_recipes = make_request(fish_url)
 
 
 if __name__ == '__main__':

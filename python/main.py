@@ -20,7 +20,11 @@ def write_to_file(data: list, file_name: str):
 
 
 def main():
-    pass
+    chicken_url = 'https://panlasangpinoy.com/categories/recipes/chicken-recipes/page/'
+    pork_url = 'https://panlasangpinoy.com/categories/recipes/pork-recipes/page/'
+    beef_url = 'https://panlasangpinoy.com/categories/recipes/beef-recipes/page/'
+    vegy_url = 'https://panlasangpinoy.com/categories/recipes/vegetable-recipes/page/'
+    fish_url = 'https://panlasangpinoy.com/categories/recipes/fish-recipes-recipes/page/'
 
 
 if __name__ == '__main__':

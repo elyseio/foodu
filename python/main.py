@@ -19,6 +19,57 @@ def write_to_file(data: list, file_name: str):
         json.dump(data, f, indent=4)
 
 
+def make_request(url: str):
+    '''
+    Make the request to the url to parse the data
+
+    Args:
+        url - link string
+
+    Returns:
+        recipe_data - list of dictionary containing recipe name, url, img link
+    '''
+
+    # pagination
+    page = 1
+
+    # create a session
+    s = requests.Session()
+
+    # store parsed data
+    recipe_data = []
+
+    while True:
+        domain = f'{url}{page}'
+        print(domain)
+
+        req = s.get(domain, impersonate='chrome')
+
+        soup = BeautifulSoup(req.text, 'lxml')
+        recipes = soup.select('.category-recipes')
+
+        # checks if there are recipe, if none, break out of the loop and return data
+        if recipes:
+            for recipe in recipes:
+                recipe_name = recipe.select_one('.entry-title-link')
+                link = recipe_name.get('href', None)
+                img = recipe.select_one('.aligncenter.post-image.entry-image')
+                img_link = img.get('data-src', None)
+                data = {
+                    'recipe': recipe_name.text,
+                    'url': link,
+                    'img': img_link
+                }
+                recipe_data.append(data)
+        else:
+            break
+
+        # iterate pages
+        page += 1
+
+    return recipe_data
+
+
 def main():
     chicken_url = 'https://panlasangpinoy.com/categories/recipes/chicken-recipes/page/'
     pork_url = 'https://panlasangpinoy.com/categories/recipes/pork-recipes/page/'

@@ -37,7 +37,7 @@ def make_request(url: str):
             for recipe in recipes:
                 recipe_name = recipe.select_one('.entry-title-link')
                 link = recipe_name.get('href', None)
-                img = recipe.select_one('.aligncenter.post-image.entry-image')
+                img = recipe.select_one('.post-image')
                 if img:
                     img_link = img.get('data-src', None)
                 else:

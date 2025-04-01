@@ -1,6 +1,7 @@
 from curl_cffi import requests
 from bs4 import BeautifulSoup
 import json
+import os
 
 
 def make_request(url: str):
@@ -68,8 +69,16 @@ def write_to_file(data: list, file_name: str):
     Returns:
         None
     '''
-    print(f'Writing into {file_name}')
-    with open(file_name, 'w', encoding='utf-8') as f:
+
+    folder_path = './recipes/'
+    file_path = os.path.join(folder_path, file_name)
+
+    print(f'Writing into {file_path}{file_name}')
+
+    # Check if the folder exists, and if not, create it
+    os.makedirs(folder_path, exist_ok=True)
+
+    with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4)
 
 

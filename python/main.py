@@ -81,7 +81,7 @@ def main():
     fish_url = 'https://panlasangpinoy.com/categories/recipes/fish-recipes-recipes/page/'
 
     # Chicken Recipes
-    chick_recipes = make_request(chicken_url)
+    chicken_recipes = make_request(chicken_url)
 
     # Pork Recipes
     pork_recipes = make_request(pork_url)

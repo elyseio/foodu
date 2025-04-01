@@ -38,7 +38,10 @@ def make_request(url: str):
                 recipe_name = recipe.select_one('.entry-title-link')
                 link = recipe_name.get('href', None)
                 img = recipe.select_one('.aligncenter.post-image.entry-image')
-                img_link = img.get('data-src', None)
+                if img:
+                    img_link = img.get('data-src', None)
+                else:
+                    img_link = None
                 data = {
                     'recipe': recipe_name.text,
                     'url': link,
